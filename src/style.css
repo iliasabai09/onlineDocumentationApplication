@@ -1,79 +1,142 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  color-scheme: light;
+  --primary-color: #2943a1;
+  --primary-color-contrast: #ffffff;
+  --primary-color-hover: #3b58d9;
+  --primary-color-active: #1c2f6e;
+  --surface-ground: #e8ecff;
+  --surface-section: #f6f7ff;
+  --surface-card: #ffffff;
+  --surface-border: rgba(34, 63, 147, 0.18);
+  --text-color: #15204d;
+  --text-color-secondary: #4b5a88;
+  --focus-ring: color-mix(in srgb, var(--primary-color) 35%, transparent);
+  background-color: var(--surface-ground);
+  color: var(--text-color);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+html.dark {
+  color-scheme: dark;
+  --primary-color: #5b78ff;
+  --primary-color-contrast: #0b1435;
+  --primary-color-hover: #6d87ff;
+  --primary-color-active: #445bdb;
+  --surface-ground: #050b1d;
+  --surface-section: #0c152c;
+  --surface-card: #111f3f;
+  --surface-border: rgba(91, 120, 255, 0.28);
+  --text-color: #f2f6ff;
+  --text-color-secondary: #bcc8ff;
+  --focus-ring: color-mix(in srgb, var(--primary-color) 45%, transparent);
+  background-color: var(--surface-ground);
+  color: var(--text-color);
 }
 
+html,
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+body {
+  background: radial-gradient(120% 120% at 50% 0%, rgba(44, 71, 171, 0.35) 0%, rgba(15, 24, 64, 0) 55%),
+    var(--surface-ground);
+  transition: background-color 0.4s ease, color 0.4s ease, background 0.4s ease;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+html.dark body {
+  background: radial-gradient(120% 120% at 50% 0%, rgba(91, 120, 255, 0.32) 0%, rgba(5, 11, 29, 0) 55%),
+    var(--surface-ground);
 }
 
-.card {
-  padding: 2em;
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  flex: 1;
+  min-height: 100vh;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* PrimeVue overrides */
+.p-button {
+  background: var(--primary-color);
+  border-color: transparent;
+  color: var(--primary-color-contrast);
+}
+
+.p-button:enabled:hover {
+  background: var(--primary-color-hover);
+}
+
+.p-button:enabled:active {
+  background: var(--primary-color-active);
+}
+
+.p-button:focus-visible {
+  box-shadow: 0 0 0 4px var(--focus-ring);
+}
+
+.p-inputtext,
+.p-password .p-inputtext {
+  border-radius: 0.85rem;
+  border: 1px solid var(--surface-border);
+  background: var(--surface-section);
+  color: var(--text-color);
+}
+
+.p-inputtext:focus,
+.p-password .p-inputtext:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+.p-card {
+  background: var(--surface-card);
+  color: var(--text-color);
+}
+
+.p-divider.p-divider-horizontal:before {
+  border-color: var(--surface-border);
+}
+
+.p-divider .p-divider-content {
+  background: transparent;
+}
+
+.p-checkbox .p-checkbox-box {
+  border: 1px solid var(--surface-border);
+}
+
+.p-checkbox.p-highlight .p-checkbox-box {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
+  background: var(--primary-color);
+}
+
+.p-password-panel {
+  background: var(--surface-card);
+  border: 1px solid var(--surface-border);
+  color: var(--text-color);
 }
